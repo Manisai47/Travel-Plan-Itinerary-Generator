@@ -1,0 +1,479 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Travel Planner | Result</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+<link href="{% static 'style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="main_resize">
+
+<header class="header">
+
+<h1>
+
+<i class="fa-solid fa-earth-americas"></i>
+
+AI Travel Planner
+
+</h1>
+
+<nav class="menu_nav">
+
+<ul>
+
+<li>
+
+<a href="{% url 'TravelPlan' %}">
+
+<i class="fa-solid fa-compass"></i>
+
+Generate New Plan
+
+</a>
+
+</li>
+
+<li>
+
+<a href="{% url 'Logout' %}">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<div class="content">
+
+<div class="content_bg">
+
+<!-- HERO -->
+
+<div class="welcome-card">
+
+<div class="badge">
+
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+
+AI Generated Itinerary
+
+</div>
+
+{% if show_welcome %}
+
+<h2>
+
+Welcome Traveler 👋
+
+</h2>
+
+<p>
+
+Create your first personalized travel itinerary using Artificial Intelligence.
+
+</p>
+
+<a href="{% url 'TravelPlan' %}" class="ui-button">
+
+Generate Travel Plan
+
+</a>
+
+{% else %}
+
+<h2>
+
+Your Journey Is Ready ✈
+
+</h2>
+
+<p>
+
+Below is your personalized AI itinerary generated according to your preferences.
+
+</p>
+
+{% endif %}
+
+</div>
+
+<!-- QUICK STATS -->
+
+{% if not show_welcome %}
+
+<div class="stats">
+
+<div class="stat-card">
+
+<h2>
+
+AI
+
+</h2>
+
+<span>
+
+Generated
+
+</span>
+
+</div>
+
+<div class="stat-card">
+
+<h2>
+
+100%
+
+</h2>
+
+<span>
+
+Customized
+
+</span>
+
+</div>
+
+<div class="stat-card">
+
+<h2>
+
+24/7
+
+</h2>
+
+<span>
+
+Travel Assistant
+
+</span>
+
+</div>
+
+<div class="stat-card">
+
+<h2>
+
+★★★★★
+
+</h2>
+
+<span>
+
+Premium Planner
+
+</span>
+
+</div>
+
+</div>
+
+{% endif %}
+
+<!-- RESULT -->
+
+<div class="result-card">
+
+{% if destination %}
+
+<h2>
+
+<i class="fa-solid fa-location-dot"></i>
+
+{{ destination }}
+
+Travel Plan
+
+</h2>
+
+{% else %}
+
+<h2>
+
+Travel Itinerary
+
+</h2>
+
+{% endif %}
+
+<div class="itinerary-output">
+
+{{ data|safe }}
+
+</div>
+
+</div>
+
+<!-- GALLERY -->
+
+{% if images %}
+
+<div class="dest-images">
+
+<h3>
+
+<i class="fa-solid fa-image"></i>
+
+Destination Gallery
+
+</h3>
+
+{{ images|safe }}
+
+</div>
+
+{% endif %}
+
+<!-- FEATURE CARDS -->
+
+<div class="features">
+
+<div class="feature-card">
+
+<i class="fa-solid fa-route"></i>
+
+<h3>
+
+Smart Route
+
+</h3>
+
+<p>
+
+Your itinerary has been optimized to reduce unnecessary travel time.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-wallet"></i>
+
+<h3>
+
+Budget Friendly
+
+</h3>
+
+<p>
+
+Travel recommendations are generated according to your specified budget.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-hotel"></i>
+
+<h3>
+
+Accommodation
+
+</h3>
+
+<p>
+
+Suggested hotels and nearby accommodations are included whenever possible.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-utensils"></i>
+
+<h3>
+
+Food Guide
+
+</h3>
+
+<p>
+
+Experience famous local restaurants and authentic regional cuisine.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-camera"></i>
+
+<h3>
+
+Top Attractions
+
+</h3>
+
+<p>
+
+Visit the most popular tourist destinations and hidden gems.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-shield-heart"></i>
+
+<h3>
+
+Travel Tips
+
+</h3>
+
+<p>
+
+Enjoy a safer and smoother trip with AI-generated recommendations.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- CTA -->
+
+<div class="welcome-card">
+
+<h2>
+
+Ready For Another Adventure?
+
+</h2>
+
+<p>
+
+Generate unlimited AI-powered itineraries for any destination around the world.
+
+</p>
+
+<div class="action-row">
+
+<a href="{% url 'TravelPlan' %}" class="ui-button">
+
+<i class="fa-solid fa-plane-departure"></i>
+
+Generate Another Trip
+
+</a>
+
+<a href="{% url 'Logout' %}" class="ui-button secondary">
+
+Logout
+
+</a>
+
+</div>
+
+</div>
+
+<footer class="footer">
+
+<h3>
+
+AI Travel Planner
+
+</h3>
+
+<p>
+
+Powered by Artificial Intelligence
+
+</p>
+
+<p>
+
+Plan • Explore • Experience • Repeat
+
+</p>
+
+</footer>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+document.querySelectorAll(".feature-card").forEach(card=>{
+
+card.addEventListener("mouseenter",()=>{
+
+card.style.transform="translateY(-10px)";
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.transform="translateY(0px)";
+
+});
+
+});
+
+window.addEventListener("load",()=>{
+
+document.querySelectorAll(".result-card,.feature-card,.stat-card,.welcome-card").forEach((el,index)=>{
+
+el.style.opacity="0";
+
+el.style.transform="translateY(40px)";
+
+setTimeout(()=>{
+
+el.style.transition=".6s";
+
+el.style.opacity="1";
+
+el.style.transform="translateY(0px)";
+
+},index*120);
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>

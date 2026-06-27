@@ -1,0 +1,391 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Create Account | AI Travel Planner</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+<link href="{% static 'style.css' %}" rel="stylesheet">
+
+<script>
+
+function validate(formObj){
+
+if(formObj.t1.value==""){
+alert("Please Enter Username");
+formObj.t1.focus();
+return false;
+}
+
+if(formObj.t2.value==""){
+alert("Please Enter Password");
+formObj.t2.focus();
+return false;
+}
+
+if(formObj.t3.value==""){
+alert("Please Enter Contact Number");
+formObj.t3.focus();
+return false;
+}
+
+if(isNaN(formObj.t3.value)){
+alert("Contact Number must be numeric");
+formObj.t3.focus();
+return false;
+}
+
+if(formObj.t4.value==""){
+alert("Please Enter Email");
+formObj.t4.focus();
+return false;
+}
+
+var filter=/^([a-zA-Z0-9_\.\-])+\@([a-zA-Z0-9\-]+\.)+([a-zA-Z]{2,})$/;
+
+if(!filter.test(formObj.t4.value)){
+alert("Please Enter Valid Email");
+formObj.t4.focus();
+return false;
+}
+
+if(formObj.t5.value==""){
+alert("Please Enter Address");
+formObj.t5.focus();
+return false;
+}
+
+document.getElementById("signupBtn").value="Creating Account...";
+document.getElementById("signupBtn").classList.add("loading");
+
+return true;
+
+}
+
+function togglePassword(){
+
+const p=document.getElementById("password");
+const eye=document.getElementById("eye");
+
+if(p.type==="password"){
+p.type="text";
+eye.className="fa-solid fa-eye-slash";
+}else{
+p.type="password";
+eye.className="fa-solid fa-eye";
+}
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="main_resize">
+
+<header class="header">
+
+<h1>
+
+<i class="fa-solid fa-earth-americas"></i>
+
+AI Travel Planner
+
+</h1>
+
+<nav class="menu_nav">
+
+<ul>
+
+<li><a href="{% url 'index' %}">Home</a></li>
+
+<li><a href="{% url 'UserLogin' %}">Login</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<div class="content">
+
+<div class="content_bg">
+
+<div class="result-card" style="max-width:760px;margin:40px auto;">
+
+<div style="text-align:center;margin-bottom:35px;">
+
+<i class="fa-solid fa-user-plus"
+
+style="font-size:70px;color:#00D4FF;"></i>
+
+<h2 style="margin-top:18px;">
+
+Create Your Account
+
+</h2>
+
+<p style="color:#AFC0D6;">
+
+Join thousands of travelers generating intelligent AI travel plans.
+
+</p>
+
+</div>
+
+<form
+
+name="f1"
+
+method="post"
+
+action="{% url 'RegisterAction' %}"
+
+onsubmit="return validate(this);"
+
+>
+
+{% csrf_token %}
+
+{% if data %}
+
+<font color="red">
+
+{{ data }}
+
+</font>
+
+{% endif %}
+
+<table>
+
+<tr>
+
+<td>
+
+<i class="fa-solid fa-user"></i>
+
+&nbsp;
+
+Username
+
+</td>
+
+<td>
+
+<input
+
+type="text"
+
+name="t1"
+
+placeholder="Choose Username"
+
+>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<i class="fa-solid fa-lock"></i>
+
+&nbsp;
+
+Password
+
+</td>
+
+<td style="position:relative;">
+
+<input
+
+id="password"
+
+type="password"
+
+name="t2"
+
+placeholder="Create Password"
+
+>
+
+<i
+
+id="eye"
+
+class="fa-solid fa-eye"
+
+onclick="togglePassword()"
+
+style="position:absolute;
+right:20px;
+top:20px;
+cursor:pointer;
+color:#9FB2CC;">
+
+</i>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<i class="fa-solid fa-phone"></i>
+
+&nbsp;
+
+Contact
+
+</td>
+
+<td>
+
+<input
+
+type="number"
+
+name="t3"
+
+placeholder="Mobile Number"
+
+>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<i class="fa-solid fa-envelope"></i>
+
+&nbsp;
+
+Email
+
+</td>
+
+<td>
+
+<input
+
+type="email"
+
+name="t4"
+
+placeholder="example@gmail.com"
+
+>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<i class="fa-solid fa-location-dot"></i>
+
+&nbsp;
+
+Address
+
+</td>
+
+<td>
+
+<textarea
+
+name="t5"
+
+placeholder="Enter Complete Address"
+
+></textarea>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td></td>
+
+<td>
+
+<input
+
+id="signupBtn"
+
+type="submit"
+
+value="Create Account"
+
+>
+
+</td>
+
+</tr>
+
+</table>
+
+</form>
+
+<div style="margin-top:35px;text-align:center;">
+
+<p style="margin-bottom:15px;">
+
+Already have an account?
+
+</p>
+
+<a
+
+href="{% url 'UserLogin' %}"
+
+class="ui-button secondary"
+
+>
+
+Sign In
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

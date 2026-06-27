@@ -1,0 +1,491 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Travel Planner Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+<link href="{% static 'style.css' %}" rel="stylesheet">
+
+<script>
+
+function validate(formObj){
+
+if(formObj.t1.value==""){
+
+alert("Please Enter Source");
+
+formObj.t1.focus();
+
+return false;
+
+}
+
+if(formObj.t2.value==""){
+
+alert("Please Enter Destination");
+
+formObj.t2.focus();
+
+return false;
+
+}
+
+if(formObj.t3.value==""){
+
+alert("Please Enter Budget");
+
+formObj.t3.focus();
+
+return false;
+
+}
+
+if(formObj.t4.value==""){
+
+alert("Please Enter Travel Description");
+
+formObj.t4.focus();
+
+return false;
+
+}
+
+document.getElementById("submitBtn").value="Generating AI Itinerary...";
+
+document.getElementById("submitBtn").classList.add("loading");
+
+return true;
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="main_resize">
+
+<header class="header">
+
+<h1>
+
+<i class="fa-solid fa-earth-americas"></i>
+
+AI Travel Planner
+
+</h1>
+
+<nav class="menu_nav">
+
+<ul>
+
+<li>
+
+<a href="{% url 'TravelPlan' %}">
+
+<i class="fa-solid fa-compass"></i>
+
+Planner
+
+</a>
+
+</li>
+
+<li>
+
+<a href="{% url 'Logout' %}">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<div class="content">
+
+<div class="content_bg">
+
+<div class="welcome-card">
+
+<div class="badge">
+
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+
+AI Powered Travel Planner
+
+</div>
+
+<h2>
+
+Generate Your Dream Trip
+
+</h2>
+
+<p>
+
+Enter your travel details and let Artificial Intelligence create a personalized itinerary including attractions, transportation, accommodation, restaurants, and daily activities.
+
+</p>
+
+</div>
+
+<div class="stats">
+
+<div class="stat-card">
+
+<h2>100+</h2>
+
+<span>Countries</span>
+
+</div>
+
+<div class="stat-card">
+
+<h2>500+</h2>
+
+<span>Cities</span>
+
+</div>
+
+<div class="stat-card">
+
+<h2>AI</h2>
+
+<span>Recommendations</span>
+
+</div>
+
+<div class="stat-card">
+
+<h2>24/7</h2>
+
+<span>Available</span>
+
+</div>
+
+</div>
+
+<div class="result-card">
+
+<h2>
+
+Create Your Travel Plan
+
+</h2>
+
+<form
+
+name="f1"
+
+method="post"
+
+action="{% url 'TravelPlanAction' %}"
+
+onsubmit="return validate(this);"
+
+>
+
+{% csrf_token %}
+
+{% if data %}
+
+<font color="red">
+
+{{ data }}
+
+</font>
+
+{% endif %}
+
+<table>
+
+<tr>
+
+<td>
+
+<i class="fa-solid fa-location-dot"></i>
+
+Source
+
+</td>
+
+<td>
+
+<input
+
+type="text"
+
+name="t1"
+
+placeholder="Ex: Hyderabad"
+
+>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<i class="fa-solid fa-plane-arrival"></i>
+
+Destination
+
+</td>
+
+<td>
+
+<input
+
+type="text"
+
+name="t2"
+
+placeholder="Ex: Bali"
+
+>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<i class="fa-solid fa-wallet"></i>
+
+Budget
+
+</td>
+
+<td>
+
+<input
+
+type="number"
+
+name="t3"
+
+placeholder="Enter Budget"
+
+>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<i class="fa-solid fa-pen-to-square"></i>
+
+Travel Preferences
+
+</td>
+
+<td>
+
+<textarea
+
+name="t4"
+
+placeholder="Example: 5 Days, Adventure Trip, Beaches, Luxury Hotels, Vegetarian Food, Pleasant Weather..."
+
+></textarea>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td></td>
+
+<td>
+
+<input
+
+id="submitBtn"
+
+type="submit"
+
+value="Generate AI Travel Plan"
+
+>
+
+</td>
+
+</tr>
+
+</table>
+
+</form>
+
+</div>
+
+<div class="features">
+
+<div class="feature-card">
+
+<i class="fa-solid fa-route"></i>
+
+<h3>
+
+Smart Route
+
+</h3>
+
+<p>
+
+AI chooses the best travel route and minimizes unnecessary travel time.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-hotel"></i>
+
+<h3>
+
+Hotels
+
+</h3>
+
+<p>
+
+Receive accommodation recommendations based on your budget and destination.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-camera"></i>
+
+<h3>
+
+Tourist Attractions
+
+</h3>
+
+<p>
+
+Explore famous places, sightseeing spots, museums, beaches and local experiences.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-utensils"></i>
+
+<h3>
+
+Food Guide
+
+</h3>
+
+<p>
+
+Discover popular restaurants, local dishes and cafés recommended for travelers.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-cloud-sun"></i>
+
+<h3>
+
+Weather Insights
+
+</h3>
+
+<p>
+
+Receive travel suggestions according to expected weather conditions.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-money-bill-wave"></i>
+
+<h3>
+
+Budget Planning
+
+</h3>
+
+<p>
+
+AI optimizes accommodation, transport and activities according to your budget.
+
+</p>
+
+</div>
+
+</div>
+
+<footer class="footer">
+
+<h3>
+
+AI Travel Planner
+
+</h3>
+
+<p>
+
+Generate Personalized Itineraries • Smart Budget Planning • Explore the World
+
+</p>
+
+</footer>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

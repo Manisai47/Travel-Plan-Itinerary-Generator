@@ -1,0 +1,507 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Travel Planner</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+<link href="{% static 'style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="main_resize">
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+<h1>
+<i class="fa-solid fa-earth-americas"></i>
+AI Travel Planner
+</h1>
+
+<nav class="menu_nav">
+
+<ul>
+
+<li>
+<a href="{% url 'index' %}">
+<i class="fa-solid fa-house"></i>
+&nbsp; Home
+</a>
+</li>
+
+<li>
+<a href="{% url 'UserLogin' %}">
+<i class="fa-solid fa-user"></i>
+&nbsp; Login
+</a>
+</li>
+
+<li>
+<a href="{% url 'Register' %}">
+<i class="fa-solid fa-user-plus"></i>
+&nbsp; Register
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<!-- ================= HERO IMAGE ================= -->
+
+<div class="content">
+
+<div class="content_bg">
+
+<div class="hbg">
+
+<img src="{% static 'images/hero.jpg' %}">
+
+</div>
+
+<!-- ================= HERO ================= -->
+
+<section class="welcome-card fade-up">
+
+<div class="badge">
+
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+
+Powered by Artificial Intelligence
+
+</div>
+
+<h2>
+
+Plan Your Dream Journey
+with AI
+
+</h2>
+
+<p>
+
+Discover destinations, optimize budgets,
+generate day-wise itineraries,
+explore famous attractions,
+restaurants,
+transportation
+and personalized travel experiences
+in just a few seconds.
+
+</p>
+
+<div class="action-row">
+
+<a class="ui-button"
+
+href="{% url 'UserLogin' %}">
+
+<i class="fa-solid fa-plane-departure"></i>
+
+&nbsp;
+
+Start Planning
+
+</a>
+
+<a class="ui-button secondary"
+
+href="{% url 'Register' %}">
+
+Create Account
+
+</a>
+
+</div>
+
+</section>
+
+<!-- ================= STATS ================= -->
+
+<section class="stats">
+
+<div class="stat-card">
+
+<h2>
+
+10K+
+
+</h2>
+
+<span>
+
+Trips Generated
+
+</span>
+
+</div>
+
+<div class="stat-card">
+
+<h2>
+
+180+
+
+</h2>
+
+<span>
+
+Countries Covered
+
+</span>
+
+</div>
+
+<div class="stat-card">
+
+<h2>
+
+4.9★
+
+</h2>
+
+<span>
+
+Average Rating
+
+</span>
+
+</div>
+
+<div class="stat-card">
+
+<h2>
+
+24/7
+
+</h2>
+
+<span>
+
+AI Assistance
+
+</span>
+
+</div>
+
+</section>
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features">
+
+<div class="feature-card">
+
+<i class="fa-solid fa-robot"></i>
+
+<h3>
+
+AI Itinerary
+
+</h3>
+
+<p>
+
+Generate complete travel plans
+tailored to your interests,
+budget,
+weather,
+and travel duration.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-wallet"></i>
+
+<h3>
+
+Budget Optimization
+
+</h3>
+
+<p>
+
+Find the best places
+while staying within
+your travel budget.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-map-location-dot"></i>
+
+<h3>
+
+Explore Destinations
+
+</h3>
+
+<p>
+
+Discover attractions,
+hotels,
+restaurants,
+and local experiences.
+
+</p>
+
+</div>
+<div class="feature-card">
+
+<i class="fa-solid fa-clock"></i>
+
+<h3>
+
+Instant Planning
+
+</h3>
+
+<p>
+
+Generate complete day-wise travel plans
+within seconds using intelligent itinerary
+generation powered by AI.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-route"></i>
+
+<h3>
+
+Smart Routes
+
+</h3>
+
+<p>
+
+Receive optimized travel routes,
+transport recommendations,
+and efficient schedules to save
+both time and money.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-hotel"></i>
+
+<h3>
+
+Hotel Suggestions
+
+</h3>
+
+<p>
+
+Explore comfortable hotels,
+budget stays,
+luxury resorts,
+and accommodation recommendations
+near your destination.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-utensils"></i>
+
+<h3>
+
+Food Recommendations
+
+</h3>
+
+<p>
+
+Discover famous local cuisines,
+restaurants,
+cafes,
+and must-try dishes wherever
+you travel.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ================= CALL TO ACTION ================= -->
+
+<section class="welcome-card">
+
+<h2>
+
+Ready To Explore The World?
+
+</h2>
+
+<p>
+
+Create your personalized AI-powered itinerary,
+discover amazing destinations,
+optimize your budget,
+and travel smarter than ever before.
+
+</p>
+
+<div class="action-row">
+
+<a href="{% url 'UserLogin' %}" class="ui-button">
+
+<i class="fa-solid fa-paper-plane"></i>
+
+&nbsp;
+
+Generate My Trip
+
+</a>
+
+<a href="{% url 'Register' %}" class="ui-button secondary">
+
+<i class="fa-solid fa-user-plus"></i>
+
+&nbsp;
+
+Join Free
+
+</a>
+
+</div>
+
+</section>
+
+{% if data %}
+
+<div class="result-card">
+
+{{ data|safe }}
+
+</div>
+
+{% endif %}
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+<h3>
+
+AI Travel Planner
+
+</h3>
+
+<p>
+
+Plan smarter • Travel better • Explore confidently
+
+</p>
+
+<p>
+
+Powered by Artificial Intelligence |
+Personalized Travel Recommendations |
+Smart Budget Planning
+
+</p>
+
+<div style="margin-top:20px;">
+
+<a href="{% url 'index' %}" class="ui-button">
+
+Home
+
+</a>
+
+<a href="{% url 'UserLogin' %}" class="ui-button secondary">
+
+Login
+
+</a>
+
+</div>
+
+</footer>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+document.querySelectorAll(".feature-card").forEach((card)=>{
+
+card.addEventListener("mouseenter",()=>{
+
+card.style.transform="translateY(-10px) scale(1.02)";
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.transform="translateY(0px) scale(1)";
+
+});
+
+});
+
+window.addEventListener("scroll",()=>{
+
+const header=document.querySelector(".header");
+
+if(window.scrollY>20){
+
+header.style.background="rgba(10,20,35,.85)";
+header.style.backdropFilter="blur(25px)";
+
+}else{
+
+header.style.background="rgba(255,255,255,.08)";
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>

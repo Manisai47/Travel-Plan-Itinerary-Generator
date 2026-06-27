@@ -1,0 +1,297 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>User Login | AI Travel Planner</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+<link href="{% static 'style.css' %}" rel="stylesheet">
+
+<script>
+
+function validate(formObj){
+
+if(formObj.t1.value.length==0){
+
+alert("Please Enter Username");
+
+formObj.t1.focus();
+
+return false;
+
+}
+
+if(formObj.t2.value.length==0){
+
+alert("Please Enter Password");
+
+formObj.t2.focus();
+
+return false;
+
+}
+
+document.getElementById("loginBtn").value="Signing In...";
+
+document.getElementById("loginBtn").classList.add("loading");
+
+return true;
+
+}
+
+function togglePassword(){
+
+const p=document.getElementById("password");
+
+const i=document.getElementById("eye");
+
+if(p.type==="password"){
+
+p.type="text";
+
+i.className="fa-solid fa-eye-slash";
+
+}
+
+else{
+
+p.type="password";
+
+i.className="fa-solid fa-eye";
+
+}
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="main_resize">
+
+<header class="header">
+
+<h1>
+
+<i class="fa-solid fa-earth-americas"></i>
+
+AI Travel Planner
+
+</h1>
+
+<nav class="menu_nav">
+
+<ul>
+
+<li><a href="{% url 'index' %}">Home</a></li>
+
+<li><a href="{% url 'Register' %}">Register</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<div class="content">
+
+<div class="content_bg">
+
+<div class="result-card" style="max-width:620px;margin:40px auto;">
+
+<div style="text-align:center;margin-bottom:30px;">
+
+<i class="fa-solid fa-user-lock"
+
+style="font-size:70px;color:#00D4FF;"></i>
+
+<h2 style="margin-top:15px;">
+
+Welcome Back
+
+</h2>
+
+<p style="color:#AFC0D6;">
+
+Sign in to continue planning your next adventure.
+
+</p>
+
+</div>
+
+<form
+
+name="f1"
+
+method="post"
+
+action="{% url 'UserLoginAction' %}"
+
+onsubmit="return validate(this);"
+
+>
+
+{% csrf_token %}
+
+{% if data %}
+
+<font color="red">
+
+{{ data }}
+
+</font>
+
+{% endif %}
+
+<table>
+
+<tr>
+
+<td>
+
+<i class="fa-solid fa-user"></i>
+
+&nbsp; Username
+
+</td>
+
+<td>
+
+<input
+
+type="text"
+
+name="t1"
+
+placeholder="Enter your username"
+
+autocomplete="username"
+
+>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<i class="fa-solid fa-lock"></i>
+
+&nbsp; Password
+
+</td>
+
+<td style="position:relative;">
+
+<input
+
+id="password"
+
+type="password"
+
+name="t2"
+
+placeholder="Enter your password"
+
+autocomplete="current-password"
+
+>
+
+<i
+
+id="eye"
+
+onclick="togglePassword()"
+
+class="fa-solid fa-eye"
+
+style="position:absolute;
+right:20px;
+top:20px;
+cursor:pointer;
+color:#AFC0D6;">
+
+</i>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td></td>
+
+<td>
+
+<input
+
+id="loginBtn"
+
+type="submit"
+
+value="Login"
+
+>
+
+</td>
+
+</tr>
+
+</table>
+
+</form>
+
+<div style="margin-top:35px;text-align:center;">
+
+<p>
+
+Don't have an account?
+
+</p>
+
+<br>
+
+<a
+
+href="{% url 'Register' %}"
+
+class="ui-button secondary"
+
+>
+
+Create Account
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
